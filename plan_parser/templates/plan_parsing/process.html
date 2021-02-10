@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block content %}
+<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='base_styles.css') }}">
+<div class="container" id="base">
+    <header id="head">
+        <h1>Let's Begin Parsing Plans</h1>
+    </header>
+    <div class="container" id="jumbo">
+        {% include "plan_parsing/instruction.html" %}
+        <h1>Processing Files</h1>
+        
+        {% for file_ in file_names %}
+        <h4>{{ file_ }}</h4>
+        {% endfor %}
+        <hr>
+        <form method="POST" action="/process_files">
+            <!-- {% for file_ in file_names %}
+            {{ file_ }}
+            {% endfor %} -->
+            <button type="submit" class="btn btn-success">Process</button>
+        </form>
+    </div>
+
+</div>
+
+{% endblock %}
