@@ -2,16 +2,16 @@
 
 build_and_run () {
 
-	sudo docker build -f Dockerfile -t flask_application .
-	sudo docker run --name flask_app -p 5001:5000 -d flask_application
+	docker build -f Dockerfile -t flask_application .
+	docker run --name flask_app -p 5001:5000 -d flask_application
     echo
     echo
     echo "Please navigate to localhost:5001 to view application!"
 	read -p "Press any key to stop application: "
-	sudo docker rm $(sudo docker stop $(sudo docker ps -a -q --filter="name=flask_app"))
+	docker rm $(sudo docker stop $(sudo docker ps -a -q --filter="name=flask_app"))
 	echo "Container Stopped"
 	echo "List of containers still running: "
-	sudo docker ps
+	docker ps
 
 }
 

@@ -8,9 +8,9 @@ This solution was built on the understanding this would be run on a unix system.
 
 **To Run The Componenets Locally**
 1. Tests:
-Run the run_tests.sh (i.e. ``bash run_tests.sh`` )
+Run the run_tests.sh (i.e. ``sudo bash run_tests.sh`` )
 2. Application:
-Run the run.sh (i.e. ``bash run.sh``)
+Run the run.sh (i.e. ``sudo bash run.sh``)
 
 **PLEASE ENSURE THE FOLLOWING:**
 
