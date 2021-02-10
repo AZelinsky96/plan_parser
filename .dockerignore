@@ -1,0 +1,7 @@
+.git
+.gitignore
+README.md
+README.rst
+*.egg*
+__pycache__
+poetry.lock

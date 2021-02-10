@@ -1,0 +1,19 @@
+#head {
+    text-align: center;
+    color: black;
+    margin-top: 30px;
+}
+
+#jumbo {
+    background-color: #b1aeae;
+    margin-top: 20px;
+    border: 2px solid rgb(0, 0, 0);
+    padding: 30px;
+    border-radius: 25px;
+    margin-left: 25px;
+    margin-right: 25px;
+}
+
+.jumbo{
+    text-align: center;
+}

@@ -1,0 +1,3 @@
+[console_scripts]
+parser = plan_parser.main:main
+

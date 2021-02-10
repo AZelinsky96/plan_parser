@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='base_styles.css') }}">
+<div class="container">
+    <header id="head">
+        <h1>Welcome To Plan Parser!</h1>
+    </header>
+
+    <div class="container" id="jumbo">
+        <h3 class="jumbo">Introduction:</h3>
+        <p class="jumbo">This is the introduction to the problem.</p>
+        <div id="begin" align="center">
+            <a href=plan_parsing>
+                <button type="button" class="btn btn-success">Begin</button>
+            </a>  
+        </div>                 
+    </div>
+
+</div>
+
+
+{% endblock %}
