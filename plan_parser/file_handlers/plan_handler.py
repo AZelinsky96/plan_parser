@@ -95,4 +95,3 @@ class PlanHandler:
             else:
                 output_structure.append((zip_,))
         return output_structure
-

@@ -7,8 +7,13 @@
         <h1>Let's Begin Parsing Plans</h1>
     </header>
     <div class="container" id="jumbo">
-        {% include "plan_parsing/instruction.html" %}
-        <h1>Files Have Been Processed!</h1>
+        <h3>Instructions:</h3>
+            <ul>
+                <li>Please enter a valid file name with a valid .csv extension.</li>
+                <li>The file name you input will be the name of the file downloaded</li>
+                <li>After entering valid file name, press download!</li>
+            </ul>
+        <hr>
         <h4>ERROR processing output file - Please enter an output name with .csv extension.</h4>
         <hr>
         <form action="download_files", method="POST">

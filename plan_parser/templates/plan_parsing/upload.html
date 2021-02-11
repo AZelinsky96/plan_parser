@@ -7,7 +7,17 @@
         <h1>Let's Begin Parsing Plans</h1>
     </header>
     <div class="container" id="jumbo">
-        {% include "plan_parsing/instruction.html" %}
+        <h3>Instructions:</h3>
+            <h5>To being parsing plans please upload the following files:</h5>
+                <ul>
+                    <li>The Zip Code csv (i.e. zips.csv)</li>
+                    <li>The Plan csv (i.e. plans.csv)</li>
+                    <li>The Desired Zip code csv (i.e. slcsp.csv)</li>
+                </ul>
+            
+            <p>If you need sample files, please download the sample files zip below, and upload these files to app.</p> 
+            <p>Sample Files can be found here: <a href="/sample_files" id="sample_file_dwnld">Sample Files</a></p>
+        <hr>
         <h1>File Upload</h1>
         <form enctype="multipart/form-data" method="POST" action="upload">
             <div class="form-group row">

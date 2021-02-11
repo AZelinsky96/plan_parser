@@ -7,15 +7,21 @@
         <h1>Let's Begin Parsing Plans</h1>
     </header>
     <div class="container" id="jumbo">
-        {% include "plan_parsing/instruction.html" %}
-        <h1>Processing Files</h1>
+        <h3>Instructions:</h3>
+            <ul>
+                <li>Ensure that the files below are the files you want to process</li>
+                <li>If these are not the files you wish to process, you can restart by clicking 'Plan Parsing' in the Navbar above</li>
+                <li>If these are the files you wish to process, press the 'Begin Parsing' button to being processing steps.</li>
+            </ul>
+        <hr>
+        <h1>Processing Files:</h1>
         
         {% for file_ in file_names %}
         <h4>{{ file_ }}</h4>
         {% endfor %}
         <hr>
         <form method="POST" action="/process_files">
-            <button type="submit" class="btn btn-success">Process</button>
+            <button type="submit" class="btn btn-success">Begin Processing</button>
         </form>
     </div>
 

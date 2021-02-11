@@ -1,0 +1,15 @@
+FROM python:3.8
+
+RUN mkdir /plan_parser
+
+COPY / /plan_parser
+COPY pyproject.toml /plan_parser
+
+WORKDIR /plan_parser
+ENV PYTHONPATH=${PYTHONPATH}:${PWD} 
+
+RUN pip3 install poetry
+RUN poetry install --no-dev
+RUN poetry add pytest
+
+CMD ["/usr/local/bin/poetry", "run", "pytest"]

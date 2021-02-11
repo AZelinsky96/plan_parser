@@ -12,10 +12,16 @@ app = Flask(__name__)
 app.secret_key = os.urandom(24)
 app.config['FILE_UPLOADS'] = os.path.join(os.getcwd(), "plan_parser", "static", "file_uploads")
 app.config['FILE_OUTPUTS'] = os.path.join(os.getcwd(), "plan_parser", "static", "file_outputs")
+app.config['SAMPLE_FILES'] = os.path.join(os.getcwd(), 'plan_parser', 'static', 'sample_files')
 
 @app.route("/")
 def landing_page():
     return render_template("base_page/landing_page.html")
+
+
+@app.route("/information")
+def information():
+    return render_template("base_page/information.html")
 
 
 @app.route("/upload", methods=['GET', 'POST'])
@@ -66,6 +72,15 @@ def download_files():
         file_path = build_file_path(output_file_path, output_file_name)
         write_output(file_path, output_data)
 
-        return send_file(file_path, attachment_filename=output_file_name)
+        return send_file(file_path, attachment_filename=output_file_name, as_attachment=True)
+
+
+@app.route("/sample_files", methods=["POST", "GET"])
+def sample_files():
+    output_file_path = app.config['SAMPLE_FILES']
+    validate_file_path(output_file_path)
+    file_path = build_file_path(output_file_path, "sample_files.zip")
+    return send_file(file_path, attachment_filename="sample_files.zip", as_attachment=True)
+
 
 app.run(debug=True, host='0.0.0.0')
