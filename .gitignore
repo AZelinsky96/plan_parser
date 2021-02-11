@@ -1,2 +1,4 @@
 __pycache__
 plan_parser.egg-info
+plan_parser/static/file_outputs/*
+plan_parser/static/file_uploads/*
