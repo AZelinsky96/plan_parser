@@ -82,5 +82,6 @@ def sample_files():
     file_path = build_file_path(output_file_path, "sample_files.zip")
     return send_file(file_path, attachment_filename="sample_files.zip", as_attachment=True)
 
-
-app.run(debug=True, host='0.0.0.0')
+if __name__ == "__main__":
+    port = int(os.environ.get('PORT', 5000))
+    app.run(debug=True, host='0.0.0.0', port=port)
