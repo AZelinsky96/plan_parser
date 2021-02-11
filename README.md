@@ -18,6 +18,6 @@ Run the run.sh (i.e. ``sudo bash run.sh``)
 2. Please ensure that you have docker installed locally. If not please run the following script: install_docker.sh as admin. (i.e. ``bash install_docker.sh``)
 
     
-**Hosted Application**
+**Hosted Application: **
 https://silver-plan-parser.herokuapp.com/
 
