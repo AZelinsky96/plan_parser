@@ -10,12 +10,16 @@
         {% include "plan_parsing/instruction.html" %}
         <h1>File Upload</h1>
         <form enctype="multipart/form-data" method="POST" action="upload">
-            <label for="file_upload" class="form-label">Upload Files</label>
-            <input type="file" class="form-control" name="file" multiple id="file_upload">  
-            <br>
-            <button type="submit" class="btn btn-primary" id="file_submit" disabled>Upload</button>
+            <div class="form-group row">
+                <label for="file_upload" class="form-label">Upload Files</label>
+                <div class="col-sm-6">
+                    <input type="file" class="form-control" name="file_upload" id="file_upload" multiple>              
+                </div>
+                <div class="col-sm-6">
+                    <button type="submit" class="btn btn-primary" id="file_submit" disabled>Upload</button>
+                </div>
+            </div>
           </form>
-  
           <script src="{{url_for('static', filename='enable_disable.js')}}"></script>
     </div>
 

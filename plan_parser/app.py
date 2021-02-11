@@ -2,7 +2,7 @@ import logging
 import os
 from flask import Flask, render_template, request, url_for, redirect, session, send_file
 from file_handlers.utls import (
-    parse_file_names, validate_file_presence, build_file_path, validate_output_type, validate_file_path
+    validate_file_presence, build_file_path, validate_output_type, validate_file_path
     )
 from file_handlers.main import process_output
 from file_handlers.main import write_output
@@ -22,7 +22,7 @@ def landing_page():
 def upload():
     if request.method == "POST":
         if request.files:
-            requested_files = request.files.getlist('file')
+            requested_files = request.files.getlist('file_upload')
             if len(requested_files) != 3:
                 return render_template("plan_parsing/uploadError.html")
             
@@ -31,15 +31,9 @@ def upload():
                 file_name = uploaded_file.filename
                 file_names.append(file_name)
                 uploaded_file.save(os.path.join(app.config['FILE_UPLOADS'], file_name))
-            
-            return redirect(url_for("receive_files", file_names=file_names))
+            session['files'] = file_names
+            return render_template('plan_parsing/process.html', file_names=file_names)
     return render_template("plan_parsing/upload.html")
-
-
-@app.route("/receive_files/<file_names>", methods=["GET", "POST"])
-def receive_files(file_names):
-    session['files'] = parse_file_names(file_names)
-    return render_template('plan_parsing/process.html', file_names=session['files'])
 
 
 @app.route("/process_files", methods=['GET', 'POST'])

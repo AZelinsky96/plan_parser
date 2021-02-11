@@ -1,6 +1,3 @@
-from pprint import pprint
-
-
 class PlanHandler:
     
     PLANS = ("bronze", "silver", "gold", "platinum")
@@ -9,12 +6,9 @@ class PlanHandler:
         self.plan_entries = plan_entries
         self.zips = zips
         self.desired_zips = desired_zips
-
     # Create validation method to make sure that plans adhere to one of four above
-
     # Create validation method to make sure that the files entered have appropriate keys for zips and plans.
-
-
+    
     def generate_output_plan(self, plan_type=None):
         plan_type = self.determine_plan_type(plan_type)
         plans_by_rate_area = self.determine_plans_by_area(self.plan_entries, plan_type)
@@ -24,7 +18,10 @@ class PlanHandler:
 
     def determine_plan_type(self, plan_type):
         if plan_type:
-            plan = (plan_type,)
+            if isinstance(plan_type, str):
+                plan = (plan_type,)
+            else:
+                plan = tuple(plan_type)
         else:
             plan = self.PLANS
 
@@ -91,7 +88,11 @@ class PlanHandler:
                     if len(plan_prices) > 1:
                         output_structure.append((zip_, plan_prices[-1]))
                         pass
-            output_structure.append((zip_,))
-        
+                    else:
+                        output_structure.append((zip_,))
+                else:
+                    output_structure.append((zip_,))
+            else:
+                output_structure.append((zip_,))
         return output_structure
 

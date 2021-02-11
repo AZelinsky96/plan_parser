@@ -13,7 +13,6 @@ class CsvHandler:
                 yield line
     
     def write_to_csv(self, file_data):
-        print(self.file_name)
         with open(self.file_name, mode="w") as outfile:
             outfile_writer = csv.writer(outfile, delimiter=",")
             for line in file_data:
