@@ -1,7 +1,9 @@
 import logging
 import os
 from flask import Flask, render_template, request, url_for, redirect, session
-from file_handlers.utls import parse_file_names, validate_file_presence
+from file_handlers.utls import parse_file_names, validate_file_presence, build_file_path
+from file_handlers.main import process_output
+
 
 app = Flask(__name__)
 app.secret_key = os.urandom(24)
@@ -39,9 +41,14 @@ def process_files():
     if request.method == "POST":
         file_names = session.get("files", None)
         if file_names:
-            print(f"Processing Files: {file_names}")
-            validate_file_presence(file_names, app.config['FILE_UPLOADS'])
-            # develop main method to intake files and parse them. Ensure that all three files are present.
+            file_path = app.config['FILE_UPLOADS']
+            validate_file_presence(file_names, file_path)
+            complete_files = [build_file_path(file_path, file_) for file_ in file_names]
+            output = process_output(complete_files)
+            if output:
+                session['file_output'] = output
+
+            # Ensure that all three files are present.
 
         
 

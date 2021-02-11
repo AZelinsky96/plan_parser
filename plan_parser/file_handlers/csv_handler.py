@@ -4,7 +4,7 @@ import csv
 class CsvHandler:
 
     def __init__(self, file_name):
-        self.file_name= file_name
+        self.file_name = file_name
     
     def create_csv_generator(self):
         with open(self.file_name) as infile:
@@ -13,6 +13,7 @@ class CsvHandler:
                 yield line
     
     def write_to_csv(self, file_data):
+        print(self.file_name)
         with open(self.file_name, mode="w") as outfile:
             outfile_writer = csv.writer(outfile, delimiter=",")
             for line in file_data:

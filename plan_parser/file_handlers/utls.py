@@ -14,3 +14,7 @@ def validate_file_presence(file_names, file_pathway):
 
 def open_files(files):
     return {file_.split(f"{os.sep}")[-1].split(".")[0]: CsvHandler(file_).create_csv_generator() for file_ in files}
+
+
+def build_file_path(leading_file_path, file_name):
+    return os.path.join(leading_file_path, file_name)
