@@ -9,6 +9,9 @@
     <div class="container" id="jumbo">
         {% include "plan_parsing/instruction.html" %}
         <h1>File Upload</h1>
+        
+        <h3>Please upload each of the three required files: zip_code, plans, and slcsp.</h3>
+
         <form enctype="multipart/form-data" method="POST" action="upload">
             <label for="file_upload" class="form-label">Upload Files</label>
             <input type="file" class="form-control" name="file" multiple id="file_upload">  

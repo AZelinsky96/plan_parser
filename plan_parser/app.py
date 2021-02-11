@@ -1,8 +1,11 @@
 import logging
 import os
 from flask import Flask, render_template, request, url_for, redirect, session, send_file
-from file_handlers.utls import parse_file_names, validate_file_presence, build_file_path
+from file_handlers.utls import (
+    parse_file_names, validate_file_presence, build_file_path, validate_output_type, validate_file_path
+    )
 from file_handlers.main import process_output
+from file_handlers.main import write_output
 
 
 app = Flask(__name__)
@@ -20,6 +23,9 @@ def upload():
     if request.method == "POST":
         if request.files:
             requested_files = request.files.getlist('file')
+            if len(requested_files) != 3:
+                return render_template("plan_parsing/uploadError.html")
+            
             file_names = []
             for uploaded_file in requested_files:
                 file_name = uploaded_file.filename
@@ -47,11 +53,7 @@ def process_files():
             output = process_output(complete_files)
             if output:
                 session['file_output'] = output
-
             # Ensure that all three files are present.
-
-        
-
     return render_template('plan_parsing/download.html')
 
 
@@ -59,11 +61,17 @@ def process_files():
 def download_files():
 
     output_file_name = request.form.get("file_output")
+
+    output_true = validate_output_type(output_file_name)
+    if not output_true:
+        return render_template('plan_parsing/downloadError.html')
     output_data = session.get("file_output")
-    
-    print(output_file_name)
-    print(output_data)
-    # print(app.config['FILE_OUTPUTS'])
-    return render_template('plan_parsing/download.html')
+    if (output_data != None) & (output_file_name != None):
+        output_file_path = app.config['FILE_OUTPUTS']
+        validate_file_path(output_file_path)
+        file_path = build_file_path(output_file_path, output_file_name)
+        write_output(file_path, output_data)
+
+        return send_file(file_path, attachment_filename=output_file_name)
 
 app.run(debug=True, host='0.0.0.0')

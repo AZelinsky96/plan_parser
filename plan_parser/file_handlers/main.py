@@ -13,5 +13,5 @@ def process_output(files):
     return output
 
 
-def write_output(output_file_path, output_file_name, output):
-    CsvHandler(build_file_path(output_file_path, output_file_name)).write_to_csv(output)
+def write_output(output_file_name, output):
+    CsvHandler(output_file_name).write_to_csv(output)
