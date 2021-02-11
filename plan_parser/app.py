@@ -1,6 +1,6 @@
 import logging
 import os
-from flask import Flask, render_template, request, url_for, redirect, session
+from flask import Flask, render_template, request, url_for, redirect, session, send_file
 from file_handlers.utls import parse_file_names, validate_file_presence, build_file_path
 from file_handlers.main import process_output
 
@@ -8,7 +8,7 @@ from file_handlers.main import process_output
 app = Flask(__name__)
 app.secret_key = os.urandom(24)
 app.config['FILE_UPLOADS'] = os.path.join(os.getcwd(), "plan_parser", "static", "file_uploads")
-
+app.config['FILE_OUTPUTS'] = os.path.join(os.getcwd(), "plan_parser", "static", "file_outputs")
 
 @app.route("/")
 def landing_page():
@@ -52,6 +52,18 @@ def process_files():
 
         
 
+    return render_template('plan_parsing/download.html')
+
+
+@app.route("/download_files", methods=["GET", "POST"])
+def download_files():
+
+    output_file_name = request.form.get("file_output")
+    output_data = session.get("file_output")
+    
+    print(output_file_name)
+    print(output_data)
+    # print(app.config['FILE_OUTPUTS'])
     return render_template('plan_parsing/download.html')
 
 app.run(debug=True, host='0.0.0.0')

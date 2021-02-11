@@ -10,8 +10,19 @@
         {% include "plan_parsing/instruction.html" %}
         <h1>Files Have Been Processed!</h1>
         <hr>
-
+        <form action="download_files", method="POST">
+            <div class="form-group row">
+                <label for="file_output_name" class="col-sm-2 col-form-label">Output File Name: </label>
+                <div class="col-sm-6">
+                    <input name="file_output" class="form-control" type="text" placeholder="Enter full file name..." id="file_output_name">
+                </div>
+                <div class="col-sm-3">
+                    <button type="submit" class="btn btn-primary" disabled id='file_output_button'>Download</button>
+                </div>
+            </div>
+        </form>
     </div>
+    <script src="{{url_for('static', filename='enable_disable.js')}}"></script>
 
 </div>
 
